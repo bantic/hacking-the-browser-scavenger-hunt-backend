@@ -26,6 +26,15 @@ app.get('/quiz/headers1', (req, res) => {
   }
 });
 
+app.get('/quiz/headers2', (req, res) => {
+  let header = req.headers['accept-language']
+  if (header && header.toLowerCase() === 'de') {
+    res.render('pages/quiz-lang-header', {correct: true})
+  } else {
+    res.render('pages/quiz-lang-header', {correct: false})
+  }
+});
+
 app.listen(app.get('port'), function() {
   console.log(`Node app is running at http://localhost:${app.get('port')}`);
 });
