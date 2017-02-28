@@ -17,12 +17,12 @@ app.get('/debug/headers', (req, res) => {
   res.render('pages/debug-headers', {headers})
 });
 
-app.get('/quiz/lang', (req, res) => {
+app.get('/quiz/headers1', (req, res) => {
   let header = req.headers['x-secret-code']
   if (header && header.toLowerCase().includes('pineapple')) {
-    res.render('pages/quiz-lang', {correct: true})
+    res.render('pages/quiz-x-header', {correct: true})
   } else {
-    res.render('pages/quiz-lang', {correct: false})
+    res.render('pages/quiz-x-header', {correct: false})
   }
 });
 
