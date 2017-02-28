@@ -3,7 +3,7 @@ var path = require('path');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/public', express.static(path.join(__dirname, 'public')))
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
@@ -33,6 +33,10 @@ app.get('/quiz/headers2', (req, res) => {
   } else {
     res.render('pages/quiz-lang-header', {correct: false})
   }
+});
+
+app.get('/quiz/javascripts', (req, res) => {
+  res.render('pages/quiz-scripts');
 });
 
 app.listen(app.get('port'), function() {

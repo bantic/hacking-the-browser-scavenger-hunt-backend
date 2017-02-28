@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <p>Create an extension that blocks the script named <code>quiz-scripts-2.js</code> but <em>not</em> the one name <code>quiz-scripts-1.js</code>.</p>
+  <p>After you do so, you'll see the secret message show up here: <span id='secret-code'></span></p>
+
+  <script type="text/javascript" src="/public/scripts/quiz-scripts-1.js"></script>
+  <script type="text/javascript" src="/public/scripts/quiz-scripts-2.js"></script>
+  <script type="text/javascript">
+    document.getElementById('secret-code').textContent = window.X_SECRET_CODE;
+  </script>
+</body>
+</html>
