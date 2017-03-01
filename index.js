@@ -1,9 +1,11 @@
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
@@ -35,13 +37,29 @@ app.get('/quiz/headers2', (req, res) => {
   }
 });
 
-app.get('/quiz/javascripts', (req, res) => {
+app.get('/quiz/scripts', (req, res) => {
   res.render('pages/quiz-scripts');
 });
 
 app.get('/quiz/debugger', (req, res) => {
   res.render('pages/quiz-debugger');
 });
+
+const CORRECT_RESPONSES = {
+  'headers1': 'guava',
+  'headers2': 'ananas',
+  'scripts': 'banana',
+  'debugger': 'mango'
+}
+
+app.post('/api/quiz/:id', (req, res) => {
+  let quizId = req.params.id
+  let guess = (req.body.guess || '').toLowerCase()
+  let correct = CORRECT_RESPONSES[quizId] === guess
+  console.log('post',quizId)
+  console.log(req.body)
+  res.send({correct})
+})
 
 app.listen(app.get('port'), function() {
   console.log(`Node app is running at http://localhost:${app.get('port')}`);
