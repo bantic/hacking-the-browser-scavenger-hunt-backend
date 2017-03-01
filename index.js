@@ -17,25 +17,24 @@ app.get('/', (req, res) => {
 });
 
 app.get('/debug/headers', (req, res) => {
-  let headers = req.headers;
-  res.render('pages/debug-headers', {headers})
+  res.render('pages/debug-headers', {headers: req.headers})
 });
 
 app.get('/quiz/headers1', (req, res) => {
   let header = req.headers['x-secret-code']
   if (header && header.toLowerCase().includes('pineapple')) {
-    res.render('pages/quiz-x-header', {correct: true})
+    res.render('pages/quiz-x-header', {correct: true, headers: req.headers})
   } else {
-    res.render('pages/quiz-x-header', {correct: false})
+    res.render('pages/quiz-x-header', {correct: false, headers: req.headers})
   }
 });
 
 app.get('/quiz/headers2', (req, res) => {
   let header = req.headers['accept-language']
   if (header && header.toLowerCase() === 'de') {
-    res.render('pages/quiz-lang-header', {correct: true})
+    res.render('pages/quiz-lang-header', {correct: true, headers: req.headers})
   } else {
-    res.render('pages/quiz-lang-header', {correct: false})
+    res.render('pages/quiz-lang-header', {correct: false, headers: req.headers})
   }
 });
 
