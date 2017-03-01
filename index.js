@@ -39,6 +39,10 @@ app.get('/quiz/javascripts', (req, res) => {
   res.render('pages/quiz-scripts');
 });
 
+app.get('/quiz/debugger', (req, res) => {
+  res.render('pages/quiz-debugger');
+});
+
 app.listen(app.get('port'), function() {
   console.log(`Node app is running at http://localhost:${app.get('port')}`);
 });
